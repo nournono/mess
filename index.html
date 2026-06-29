@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Secret Card</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#111;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding-bottom:50px;
+}
+
+.card{
+    width:320px;
+    height:450px;
+    perspective:1000px;
+    cursor:pointer;
+
+    opacity:0;
+    animation:show 1.5s forwards;
+}
+
+@keyframes show{
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.card-inner{
+    width:100%;
+    height:100%;
+    position:relative;
+    transform-style:preserve-3d;
+    transition:transform 1s ease;
+}
+
+.card.flipped .card-inner{
+    transform:rotateY(180deg);
+}
+
+.front,
+.back{
+    position:absolute;
+    width:100%;
+    height:100%;
+    border-radius:12px;
+    overflow:hidden;
+    backface-visibility:hidden;
+}
+
+.front{
+    box-shadow:0 0 25px rgba(0,0,0,.4);
+}
+
+.front img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.back{
+    background:#f4ead7;
+    border:2px solid #c8b08b;
+    color:#3a2b1d;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:30px;
+    text-align:center;
+
+    transform:rotateY(180deg);
+
+    font-family:'Cinzel', serif;
+    box-shadow:0 0 25px rgba(0,0,0,.4);
+}
+
+  
+.back h2{
+    font-size:18px;
+    font-weight:500;
+    line-height:1.8;
+    letter-spacing:1px;
+}
+
+.footer{
+    position:fixed;
+    bottom:10px;
+    color:#666;
+    font-size:12px;
+    font-family:serif;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="card" id="card">
+
+    <div class="card-inner">
+
+        <div class="front">
+            <img src="https://i.postimg.cc/CLMdz6xL/b3187551b41668e1d55c649f0fe10736.jpg">
+        </div>
+
+        <div class="back">
+            <h2>
+                Alpha Bravo India<br>
+                Hotel Echo Lima Papa<br>
+                Tango Hotel Echo<br>
+                Golf India Romeo Lima
+                <br><br>
+                8256, Urban-91.0234
+            </h2>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="footer">
+    Click the image
+</div>
+
+<script>
+
+const card = document.getElementById("card");
+
+card.addEventListener("click", () => {
+    card.classList.toggle("flipped");
+});
+
+</script>
+
+</body>
+</html>
